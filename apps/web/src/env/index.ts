@@ -1,3 +1,3 @@
-import { Environment } from './env'
+import { Environment } from './env';
 
-export const { MODE } = Environment.config(import.meta.env)
+export const { MODE } = Environment.config(import.meta.env);

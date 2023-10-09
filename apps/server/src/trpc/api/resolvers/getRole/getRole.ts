@@ -1,3 +1,3 @@
-import { userProcedure } from 'trpc'
+import { userProcedure } from 'trpc';
 
-export const getRole = userProcedure.query(() => ({ role: 'USER' as const }))
+export const getRole = userProcedure.query(() => ({ role: 'USER' as const }));

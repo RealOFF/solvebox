@@ -1,0 +1,8 @@
+{
+  "extends": "@solvebox/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist"
+  },
+  "references": []
+}

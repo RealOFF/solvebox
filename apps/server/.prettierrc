@@ -1,40 +1,40 @@
 {
-   "tabWidth": 3,
-   "printWidth": 120,
-   "semi": false,
-   "singleQuote": true,
-   "arrowParens": "avoid",
-   "trailingComma": "es5",
-   "plugins": ["./node_modules/@trivago/prettier-plugin-sort-imports"],
-   "importOrderSeparation": true,
-   "importOrderSortSpecifiers": true,
-   "importOrder": [
-      "<THIRD_PARTY_MODULES>",
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "arrowParens": "avoid",
+  "trailingComma": "es5",
+  "plugins": ["./node_modules/@trivago/prettier-plugin-sort-imports"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
 
-      "^dotenv/config$",
+    "^dotenv/config$",
 
-      "^(.*)aliases$",
+    "^(.*)aliases$",
 
-      "core",
+    "core",
 
-      "^env$",
+    "^env$",
 
-      "^@react-vite-trpc(.*)",
+    "^@solvebox(.*)",
 
-      "^trpc(.*)",
-      "^trpc$",
+    "^trpc(.*)",
+    "^trpc$",
 
-      "^middlewares(.*)",
+    "^middlewares(.*)",
 
-      "^helpers$",
-      "(.*)helpers$",
+    "^helpers$",
+    "(.*)helpers$",
 
-      "^utils$",
-      "(.*)utils$",
+    "^utils$",
+    "(.*)utils$",
 
-      "^types(.*)",
-      "(.*)types$",
+    "^types(.*)",
+    "(.*)types$",
 
-      "^[./]"
-   ]
+    "^[./]"
+  ]
 }

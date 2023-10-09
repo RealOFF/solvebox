@@ -1,84 +1,104 @@
-import fs from 'fs-extra'
-import moduleAlias from 'module-alias'
-import { type SpyInstance, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import fs from 'fs-extra';
+import moduleAlias from 'module-alias';
+import {
+  type SpyInstance,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
-import { Aliases } from './aliases'
+import { Aliases } from './aliases';
 
 describe('Aliases', () => {
-   let mockReadJsonSync: SpyInstance
-   let mockReaddirSync: SpyInstance
-   let mockAddAliases: SpyInstance
+  let mockReadJsonSync: SpyInstance;
+  let mockReaddirSync: SpyInstance;
+  let mockAddAliases: SpyInstance;
 
-   beforeEach(() => {
-      mockReadJsonSync = vi.spyOn(fs, 'readJsonSync')
-      mockReaddirSync = vi.spyOn(fs, 'readdirSync')
-      mockAddAliases = vi.spyOn(moduleAlias, 'addAliases')
-   })
+  beforeEach(() => {
+    mockReadJsonSync = vi.spyOn(fs, 'readJsonSync');
+    mockReaddirSync = vi.spyOn(fs, 'readdirSync');
+    mockAddAliases = vi.spyOn(moduleAlias, 'addAliases');
+  });
 
-   afterEach(() => {
-      vi.restoreAllMocks()
-   })
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
-   describe('.config', () => {
-      it('should configure internal packages and directories', () => {
-         const configInternalPackagesSpy = vi.spyOn(Aliases, 'configInternalPackages')
+  describe('.config', () => {
+    it('should configure internal packages and directories', () => {
+      const configInternalPackagesSpy = vi.spyOn(
+        Aliases,
+        'configInternalPackages'
+      );
 
-         const configDirectoriesSpy = vi.spyOn(Aliases, 'configDirectories')
+      const configDirectoriesSpy = vi.spyOn(Aliases, 'configDirectories');
 
-         Aliases.config()
+      Aliases.config();
 
-         expect(configInternalPackagesSpy).toHaveBeenCalled()
+      expect(configInternalPackagesSpy).toHaveBeenCalled();
 
-         expect(configDirectoriesSpy).toHaveBeenCalled()
-      })
-   })
+      expect(configDirectoriesSpy).toHaveBeenCalled();
+    });
+  });
 
-   describe('.configInternalPackages', () => {
-      it('should read tsconfig.json file', () => {
-         Aliases.configInternalPackages()
+  describe('.configInternalPackages', () => {
+    it('should read tsconfig.json file', () => {
+      Aliases.configInternalPackages();
 
-         expect(mockReadJsonSync).toBeCalledWith('tsconfig.json')
-      })
+      expect(mockReadJsonSync).toBeCalledWith('tsconfig.json');
+    });
 
-      it('should add aliases for internal packages', () => {
-         const references = [{ path: '../@react-vite-trpc/config' }]
+    it('should add aliases for internal packages', () => {
+      const references = [{ path: '../@solvebox/config' }];
 
-         const tsConfig = {
-            extends: '',
-            compilerOptions: {},
-            references,
-         }
+      const tsConfig = {
+        extends: '',
+        compilerOptions: {},
+        references,
+      };
 
-         mockReadJsonSync.mockReturnValueOnce(tsConfig)
+      mockReadJsonSync.mockReturnValueOnce(tsConfig);
 
-         Aliases.configInternalPackages()
+      Aliases.configInternalPackages();
 
-         expect(mockAddAliases).toBeCalled()
+      expect(mockAddAliases).toBeCalled();
 
-         references.forEach(({ path }) => {
-            const [_, internalPackage] = path.split('@')
+      references.forEach(({ path }) => {
+        const [_, internalPackage] = path.split('@');
 
-            const packageName = `@${internalPackage}`
+        const packageName = `@${internalPackage}`;
 
-            expect(mockAddAliases).toBeCalledWith({ [packageName]: `${packageName}/dist/index.js` })
-         })
-      })
-   })
+        expect(mockAddAliases).toBeCalledWith({
+          [packageName]: `${packageName}/dist/index.js`,
+        });
+      });
+    });
+  });
 
-   describe('.configDirectories', () => {
-      it('should read and add aliases for directories', () => {
-         const directories = ['core', 'env', 'middlewares', 'modules', 'testing', 'types'].map(name => ({
-            name,
-            isDirectory: () => true,
-         }))
+  describe('.configDirectories', () => {
+    it('should read and add aliases for directories', () => {
+      const directories = [
+        'core',
+        'env',
+        'middlewares',
+        'modules',
+        'testing',
+        'types',
+      ].map(name => ({
+        name,
+        isDirectory: () => true,
+      }));
 
-         mockReaddirSync.mockReturnValueOnce(directories)
+      mockReaddirSync.mockReturnValueOnce(directories);
 
-         Aliases.configDirectories()
+      Aliases.configDirectories();
 
-         expect(mockReaddirSync).toHaveBeenCalledOnce()
+      expect(mockReaddirSync).toHaveBeenCalledOnce();
 
-         expect(mockAddAliases).toBeCalled()
-      })
-   })
-})
+      expect(mockAddAliases).toBeCalled();
+    });
+  });
+});

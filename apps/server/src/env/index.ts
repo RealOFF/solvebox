@@ -1,3 +1,3 @@
-import { Environment } from './env'
+import { Environment } from './env';
 
-export const { PORT, isProd, isDev } = Environment.config()
+export const { PORT, isProd, isDev } = Environment.config();

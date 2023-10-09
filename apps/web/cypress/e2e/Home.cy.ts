@@ -1,5 +1,5 @@
 it('Home', () => {
-   expect(true).to.equal(true)
-})
+  expect(true).to.equal(true);
+});
 
-export {}
+export {};

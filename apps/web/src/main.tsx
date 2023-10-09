@@ -1,11 +1,10 @@
-import ReactDOM from 'react-dom/client'
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
 
-import { App } from 'components/core/App'
-
-import { Providers } from 'components/shared'
+import { App } from './app';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-   <Providers>
-      <App />
-   </Providers>
-)
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

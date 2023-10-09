@@ -1,11 +1,11 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
-import './aliases'
+import './aliases';
 
-import { HttpServer } from 'core'
+import { HttpServer } from 'core';
 
-import { Middlewares } from 'middlewares'
+import { Middlewares } from 'middlewares';
 
-const { app } = HttpServer.create()
+const { app } = HttpServer.create();
 
-Middlewares.config(app)
+Middlewares.config(app);

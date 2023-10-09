@@ -1,60 +1,49 @@
 {
-   "tabWidth": 3,
-   "printWidth": 120,
-   "semi": false,
-   "singleQuote": true,
-   "arrowParens": "avoid",
-   "trailingComma": "es5",
-   "plugins": ["./node_modules/@trivago/prettier-plugin-sort-imports"],
-   "importOrderSeparation": true,
-   "importOrderSortSpecifiers": true,
-   "importOrder": [
-      "<THIRD_PARTY_MODULES>",
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "arrowParens": "avoid",
+  "trailingComma": "es5",
+  "plugins": ["./node_modules/@trivago/prettier-plugin-sort-imports"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
 
-      "core",
+    "core",
 
-      "^env$",
+    "^env$",
 
-      "^@react-vite-trpc(.*)",
+    "^@solvebox(.*)",
 
-      "^trpc(.*)",
-      "^@trpc$",
+    "^trpc(.*)",
+    "^@trpc$",
 
-      "^shared$",
+    "^shared$",
 
-      "^@redux$",
-      "^@redux/reducers(.*)",
+    "^assets(.*)",
 
-      "^styles(.*)",
+    "^components(.*)",
+    "(.*)/components$",
 
-      "^assets(.*)",
+    "^./modules$",
 
-      "(.*)styled$",
-      "(.*)styled/(.*)",
+    "^hooks$",
+    "(.*)hooks$",
 
-      "^components/shared$",
+    "^services$",
+    "(.*)services$",
 
-      "^components(.*)",
-      "(.*)/components$",
+    "^helpers$",
+    "(.*)helpers$",
 
-      "^./modules$",
+    "^utils$",
+    "(.*)utils$",
 
-      "^@redux/hooks$",
-      "^hooks$",
-      "(.*)hooks$",
+    "^types(.*)",
+    "(.*)types$",
 
-      "^services$",
-      "(.*)services$",
-
-      "^helpers$",
-      "(.*)helpers$",
-
-      "^utils$",
-      "(.*)utils$",
-
-      "^types(.*)",
-      "(.*)types$",
-
-      "^[./]"
-   ]
+    "^[./]"
+  ]
 }
